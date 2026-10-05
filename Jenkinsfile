@@ -2,7 +2,7 @@ pipeline {
     agent any
         
     environment{
-        deploydir = "/var/lib/tomcat/webapps/"
+        deploydir = "/var/lib/tomcat9/webapps/"
     }
 
     triggers{
