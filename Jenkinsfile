@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-
     stages {
+
         stage('Build') {
             steps {
                 sh 'mvn clean package'
@@ -14,23 +14,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
+
         stage('Deploy') {
             steps {
-                cd /var/lib/jenkins/workspace/Jenkins/src/main/webapp
-                sh 'sudo cp /var/lib/jenkins/workspace/Jenkins/target/vivekapp.war /var/lib/tomcat11/webapps/vivekapp.war'
+                sh 'sudo cp target/vivekapp.war /var/lib/tomcat11/webapps/vivekapp.war'
                 sh 'sudo systemctl restart tomcat11'
             }
-        }
-
-        
-    }
-
-    post {
-        success {
-            echo 'Deployment successful! Application is live on Tomcat11.'
-        }
-        failure {
-            echo 'Deployment failed.'
         }
     }
 }
