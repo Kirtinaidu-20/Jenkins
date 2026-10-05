@@ -39,23 +39,27 @@ pipeline {
         {
             steps{
                 sh "sudo cp -rvf target/vivekapp.war ${deploydir}"
+               // sh "sudo cp -rvf target/vivekapp.war /var/lib/tomcat9/webapps/"
                 sh "sudo systemctl restart tomcat9"
             }
         }
     }
     post {
-        success {
-            echo 'Deployment successful! Application is live on Tomcat server.'
-            mail to: 'kolatarun95@gmail.com',
-                subject:'Build success'
-                body:'pipeline running successfully' 
-        }
-        failure {
-            echo 'Deployment failed.'
-            mail to: 'kolatarun95@gmail.com',
-                subject:'Build failed'
-                body:'pipeline failed. Check jenkins' 
-        }
+    success {
+        echo 'Deployment successful! Application is live on Tomcat'
+
+        mail to: 'kolatarun95@gmail.com',
+             subject: 'Build success',
+             body: 'Pipeline running successfully'
     }
+
+    failure {
+        echo 'Deployment failed.'
+
+        mail to: 'kolatarun95@gmail.com',
+             subject: 'Build failed',
+             body: 'Pipeline failed. Check Jenkins console output.'
+    }
+}
 
 }
