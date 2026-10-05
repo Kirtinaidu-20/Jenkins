@@ -1,9 +1,6 @@
 pipeline {
-    agent {
-        label 'slavenode'
-    
-    }
-
+    agent any
+        
     /*environment{
         deploydir = "/var/lib/tomcat/webapps/"
     }*/
