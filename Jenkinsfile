@@ -30,7 +30,7 @@ pipeline {
             echo 'Deployment successful! Application is live on Tomcat11.'
         }
         failure {
-            echo 'Deployment failed, Deploy it .'
+            echo 'Deployment failed, Deploy it again .'
         }
     }
 }
